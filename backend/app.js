@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 // Allow only your frontend's origin, and enable credentials
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://healhcare-app.onrender.com"],
+    origin: ["http://localhost:5173", "https://healhcare-app-1.onrender.com"],
     credentials: true, // if you're using cookies/auth headers
   })
 );
