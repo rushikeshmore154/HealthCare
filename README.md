@@ -1,7 +1,7 @@
 # 🏥 Hospital Queue and Inventory Management System
 
 ➡️ **[Live Demo](https://healhcare-app-1.onrender.com)**
-(ML model not included in this cloud-based-live-link yet)
+
 
 ---
 
