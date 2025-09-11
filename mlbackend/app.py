@@ -67,7 +67,8 @@ app = Flask(__name__)
 CORS(app)
 
 # Load the trained models
-with open("mlbackend/patient_prediction_model.pkl", "rb") as model_file:
+model_path = os.path.join(os.path.dirname(__file__), "patient_prediction_model.pkl")
+with open(model_path, "rb") as model_file:
     models = joblib.load(model_file)
 
 rf_emergency = models["rf_emergency"]
