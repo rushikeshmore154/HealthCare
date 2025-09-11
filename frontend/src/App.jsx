@@ -4,7 +4,7 @@ import HospitalLoginPage from "./pages/auth/HospitalLoginPage";
 import UserLoginPage from "./pages/auth/UserLoginPage";
 import SignupSelectionPage from "./pages/SignUpSelectionPage";
 import UserSignup from "./components/auth/user-signup";
-import HospitalSignup from "./components/auth/HospitalSignup";
+import HospitalSignup from "./components/auth/HospitalSignUp";
 import Protected from "./HOC/authprovider";
 import HomePage from "./pages/HomePage";
 import HospitalDashboardPage from "./pages/HospitalDashboardPage";
