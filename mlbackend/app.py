@@ -3,14 +3,13 @@ from flask_cors import CORS
 import joblib
 import pandas as pd
 from datetime import datetime
-
-import pandas as pd
+import os
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
 
 # Load dataset
-file_path = r"mlbackend\data.csv"
+file_path = os.path.join(os.path.dirname(__file__), "data.csv")
 df = pd.read_csv(file_path)
 
 df['D.O.A'] = pd.to_datetime(df['D.O.A'], errors='coerce')
