@@ -1,7 +1,6 @@
 import HospitalList from "@/components/home/hospital-list";
 import HomeLayout from "@/components/home/layouts/home-layout";
 import UserLayout from "@/components/userLayout";
-import UserNavbar from "@/components/userNavbar";
 import React from "react";
 
 const HomePage = () => {

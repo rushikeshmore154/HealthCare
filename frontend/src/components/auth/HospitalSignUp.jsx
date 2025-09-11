@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Form, FormField, FormItem, FormMessage } from "@/components/ui/form";
+import axios from "@/services/axios";
 
 const hospitalSchema = z
   .object({
@@ -65,18 +66,18 @@ export default function HospitalSignUp() {
     const availableBeds = data.totalBeds - data.occupiedBeds;
 
     try {
-      const res = await fetch("http://localhost:5000/api/hospital/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, availableBeds }),
+      const res = await axios.post("/hospital/register", {
+        ...data,
+        availableBeds,
       });
-
-      const result = await res.json();
-      if (!res.ok) throw new Error(result.message || "Registration failed");
 
       navigate("/auth/login");
     } catch (err) {
-      setErrorMessage(err.message);
+      if (err.response && err.response.data && err.response.data.message) {
+        setErrorMessage(err.response.data.message);
+      } else {
+        setErrorMessage(err.message);
+      }
     }
   };
 

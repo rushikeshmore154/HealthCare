@@ -7,16 +7,13 @@ import {
   BedDouble,
   ClipboardList,
   Box,
-  Home,
-  Users,
   Activity,
   Building2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
-import { DialogTitle } from "@radix-ui/react-dialog";
-import { SheetTitle } from "@/components/ui/sheet";
+import axios from "@/services/axios";
 
 export default function AppSidebar() {
   const navigate = useNavigate();
@@ -63,15 +60,13 @@ export default function AppSidebar() {
 
   const getHospitalInfo = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/hospital/get", {
-        method: "GET",
+      const response = await axios.get("/hospital/get", {
         headers: {
           "Content-Type": "application/json",
           authorization: `${localStorage.getItem("authToken")}`,
         },
       });
-      const data = await response.json();
-      setHospital(data);
+      setHospital(response.data);
     } catch (error) {
       console.error(error);
     }

@@ -1,18 +1,26 @@
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
 
 const DeleteConfirmationModal = ({ isOpen, onClose, onConfirm, itemName }) => {
   return (
-    (<Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Confirm Deletion</DialogTitle>
         </DialogHeader>
         <p>Are you sure you want to delete the item "{itemName}"?</p>
         <DialogFooter>
-          <Button variant="outline" 
+          <Button
+            variant="outline"
             className="bg-blue-500 text-white hover:bg-blue-600 transition-all"
-            onClick={onClose}>
+            onClick={onClose}
+          >
             Cancel
           </Button>
           <Button variant="destructive" onClick={onConfirm}>
@@ -20,9 +28,8 @@ const DeleteConfirmationModal = ({ isOpen, onClose, onConfirm, itemName }) => {
           </Button>
         </DialogFooter>
       </DialogContent>
-    </Dialog>)
+    </Dialog>
   );
-}
+};
 
-export default DeleteConfirmationModal
-
+export default DeleteConfirmationModal;

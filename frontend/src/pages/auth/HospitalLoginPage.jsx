@@ -6,12 +6,12 @@ const LoginPage = () => {
 
   const loginConfig = {
     patient: {
-      url: "http://localhost:5000/api/user/login",
+      url: "/user/login",
       title: "Patient Login",
       redirect: "/home",
     },
     hospital: {
-      url: "http://localhost:5000/api/hospital/login",
+      url: "/hospital/login",
       title: "Hospital Login",
       redirect: "/hospital/dashboard",
     },

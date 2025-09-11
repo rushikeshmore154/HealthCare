@@ -1,6 +1,6 @@
 // components/Chatbot.jsx
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "@/services/axios"; // Change import to use your configured axios
 import UserLayout from "./userLayout";
 
 export default function Chatbot() {
@@ -15,7 +15,7 @@ export default function Chatbot() {
     setInput("");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/chatbot", {
+      const res = await axios.post("/chatbot", {
         query: input,
       });
 

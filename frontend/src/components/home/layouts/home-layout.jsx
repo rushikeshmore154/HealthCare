@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../navbar";
-import UserNavbar from "@/components/userNavbar";
+// import Navbar from "../navbar";
+// import UserNavbar from "@/components/userNavbar";
 
 export default function HomeLayout({ children }) {
   return (

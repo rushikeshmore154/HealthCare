@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Bed, Plus, Minus } from "lucide-react";
+import axios from "@/services/axios"; // Add this import
 
 export default function BedAllocation() {
   const [totalBeds, setTotalBeds] = useState(0);
@@ -7,18 +8,8 @@ export default function BedAllocation() {
 
   const getAvailableBeds = async () => {
     try {
-      const res = await fetch(
-        "http://localhost:5000/api/hospital/get-availablity",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `${localStorage.getItem("authToken")}`,
-          },
-        }
-      );
-
-      const data = await res.json();
+      const res = await axios.get("/hospital/get-availablity");
+      const data = res.data;
       setTotalBeds(data.totalBeds);
       setAllocatedBeds(data.occupiedBeds);
     } catch (error) {
@@ -28,18 +19,8 @@ export default function BedAllocation() {
 
   const updateBedCount = async (type) => {
     try {
-      const res = await fetch(
-        `http://localhost:5000/api/hospital/${type}-availablity`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            authorization: `${localStorage.getItem("authToken")}`,
-          },
-        }
-      );
-
-      if (res.ok) {
+      const res = await axios.post(`/hospital/${type}-availablity`);
+      if (res.status === 200) {
         setAllocatedBeds((prev) =>
           type === "decrement" ? prev + 1 : Math.max(0, prev - 1)
         );

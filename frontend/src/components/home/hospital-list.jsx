@@ -3,6 +3,7 @@ import { Hospital as HospitalIcon } from "lucide-react";
 import { HospitalCard } from "./hospital-card";
 import HospitalFilters from "./hospital-filters";
 import { Button } from "@/components/ui/button";
+import axios from "@/services/axios"; // Add this import
 
 export default function HospitalList() {
   const [hospitals, setHospitals] = useState([]);
@@ -21,14 +22,8 @@ export default function HospitalList() {
     const fetchHospitals = async () => {
       try {
         setLoading(true);
-        const response = await fetch(
-          "http://localhost:5000/api/hospital/getall"
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch hospitals");
-        }
-        const data = await response.json();
-        setHospitals(data);
+        const response = await axios.get("/hospital/getall");
+        setHospitals(response.data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -53,10 +48,6 @@ export default function HospitalList() {
     return matchesSearch && matchesCity && matchesBeds && matchesEmergency;
   });
 
-  const handleViewDetails = useCallback((id) => {
-    console.log("View details for hospital ID:", id);
-  }, []);
-
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto mb-8">
@@ -78,7 +69,7 @@ export default function HospitalList() {
               <HospitalCard
                 key={hospital._id}
                 hospital={hospital}
-                onViewDetails={handleViewDetails}
+                // onViewDetails={handleViewDetails}
               />
             ))}
           </div>

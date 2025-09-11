@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import LoginPage from "./pages/auth/LoginPage";
-import SignupPage from "./pages/auth/SignupPage";
 import HospitalLoginPage from "./pages/auth/HospitalLoginPage";
 import UserLoginPage from "./pages/auth/UserLoginPage";
+import SignupSelectionPage from "./pages/SignUpSelectionPage";
+import UserSignup from "./components/auth/user-signup";
+import HospitalSignup from "./components/auth/HospitalSignup";
 import Protected from "./HOC/authprovider";
 import HomePage from "./pages/HomePage";
 import HospitalDashboardPage from "./pages/HospitalDashboardPage";
@@ -11,14 +12,10 @@ import { Toaster } from "./components/ui/toaster";
 import HospitalAnalyticsPage from "./pages/HospitalAnalyticsPage";
 import HospitalAppointmentPages from "./pages/HospitalAppointmentPages";
 import InventoryManagement from "./pages/HospitalInventory";
-// import { Routes, Route } from "react-router-dom";
 import HospitalsPage from "./pages/HomePage";
 import AppointmentsPage from "./pages/UserAppointmentsPage";
 import ProfilePage from "./pages/ProfliePage";
 import LogoutButton from "./components/LogoutButton";
-import UserSignup from "./components/auth/user-signup";
-import HospitalSignup from "./components/auth/HospitalSignup";
-import SignupSelectionPage from "./pages/SignUpSelectionPage";
 import Chatbot from "./components/Chatbot";
 
 function App() {

@@ -1,6 +1,6 @@
 import Appointment from "../models/Appointment.js";
 import Hospital from "../models/Hospital.js";
-import User from "../models/User.js";
+// import User from "../models/User.js";
 
 // 📌 Book an Appointment
 export const bookAppointment = async (req, res) => {

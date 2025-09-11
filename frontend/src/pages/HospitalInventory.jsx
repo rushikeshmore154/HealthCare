@@ -3,11 +3,11 @@ import HospitalLayout from "@/components/hospital-dashboard/layout/hospital-layo
 import React from "react";
 
 const HospitalInventory = () => {
-    return (
-        <HospitalLayout>
-            <InventoryManagement />
-        </HospitalLayout>
-    );
+  return (
+    <HospitalLayout>
+      <InventoryManagement />
+    </HospitalLayout>
+  );
 };
 
 export default HospitalInventory;

@@ -3,11 +3,11 @@ import HospitalLayout from "@/components/hospital-dashboard/layout/hospital-layo
 import React from "react";
 
 const HospitalAppointmentPages = () => {
-    return (
-        <HospitalLayout>
-            <HospitalAppointments />
-        </HospitalLayout>
-    );
+  return (
+    <HospitalLayout>
+      <HospitalAppointments />
+    </HospitalLayout>
+  );
 };
 
 export default HospitalAppointmentPages;

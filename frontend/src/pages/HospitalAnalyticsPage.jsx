@@ -3,9 +3,9 @@ import HospitalLayout from "@/components/hospital-dashboard/layout/hospital-layo
 import React from "react";
 
 export default function HospitalAnalyticsPage() {
-    return (
-        <HospitalLayout>
-            <Analytics />
-        </HospitalLayout>
-    );
+  return (
+    <HospitalLayout>
+      <Analytics />
+    </HospitalLayout>
+  );
 }

@@ -11,6 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormField, FormItem, FormMessage } from "@/components/ui/form";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "@/services/axios"; // Update import to use configured axios
 
 const userSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -34,31 +35,33 @@ export default function UserLogin({ url, title, redirect }) {
     setErrorMessage(""); // Reset error state
 
     try {
-      const response = await fetch(url, {
-        method: "POST",
+      const response = await axios.post(url, data, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
       });
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        toast.error("Login failed");
-        throw new Error(result.message || "Login failed");
-      }
+      const result = response.data;
 
       // Store token and navigate
       localStorage.setItem("authToken", result.token);
-      // After successful login
       localStorage.setItem("token", result.token);
       localStorage.setItem("role", result.role);
       toast.success("Login successfull!");
       navigate(redirect);
-      toast.success("Login successfull!"); // Redirect to dashboard or any authenticated route
+      toast.success("Login successfull!");
     } catch (error) {
-      setErrorMessage(error.message);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        setErrorMessage(error.response.data.message);
+        toast.error("Login failed");
+      } else {
+        setErrorMessage(error.message);
+        toast.error("Login failed");
+      }
     }
   };
 
