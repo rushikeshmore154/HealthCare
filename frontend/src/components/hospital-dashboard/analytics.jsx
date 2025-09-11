@@ -17,7 +17,7 @@ export default function Analytics() {
 
     try {
       const res = await axios.get(
-        `http://localhost:4000/api/hospital/predict-patients?date=${selectedDate}`
+        `https://healhcare-app-2.onrender.com/api/hospital/predict-patients?date=${selectedDate}`
       );
 
       const data = res.data;
