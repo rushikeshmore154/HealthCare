@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "../services/axios"; // Your axios instance with JWT
-import UserLayout from "@/components/UserLayout";
+import UserLayout from "@/components/userLayout";
 
 export default function UserAppointmentsPage() {
   const [appointments, setAppointments] = useState([]);

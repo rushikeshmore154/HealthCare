@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Hospital as HospitalIcon } from "lucide-react";
 import { HospitalCard } from "./hospital-card";
 import HospitalFilters from "./hospital-filters";
