@@ -15,12 +15,14 @@ const PORT = process.env.PORT || 5000;
 // Allow only your frontend's origin, and enable credentials
 app.use(
   cors({
-    origin: "http://localhost:5173", // your frontend's origin
-    credentials: true, // allow cookies/headers
+    origin: ["http://localhost:5173", "https://healhcare-app.onrender.com"],
+    credentials: true, // if you're using cookies/auth headers
   })
 );
 
 app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.send("Hello World");

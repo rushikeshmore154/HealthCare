@@ -8,14 +8,14 @@ import {
   hospitalLogin,
   updateBedAvailability,
   getRequests,
-  getAppointments,
+  // getAppointments,
   createManyHospitals,
   getAvailablity,
   decrementBedAvailability,
   incrementBedAvailability,
 } from "../controllers/hospitals.js";
 import authentication from "../middleware/authentication.js";
-import { getHospitalAppointments } from "../controllers/appointments.js";
+// import { getHospitalAppointments } from "../controllers/appointments.js";
 const router = Router();
 
 router.post("/login", hospitalLogin);

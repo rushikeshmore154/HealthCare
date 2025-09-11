@@ -17,19 +17,25 @@ export const createHospital = async (req, res) => {
       city,
       occupiedBeds,
     } = req.body;
-    const existingHospital = await Hospital.findOne({ email });
-    if (existingHospital)
-      return res.status(400).json({ message: "Hospital already exists" });
 
-    // const hashedPassword = await bcrypt.hash(password, 10);
+    // Check if hospital already exists
+    const existingHospital = await Hospital.findOne({ email });
+    if (existingHospital) {
+      return res.status(400).json({ message: "Hospital already exists" });
+    }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create hospital with hashed password
     const hospital = new Hospital({
       name,
       address,
       contactNumber,
       email,
-      password: password,
+      password: hashedPassword, // store hashed password
       totalBeds,
-      occupiedBeds: occupiedBeds,
+      occupiedBeds,
       availableBeds: totalBeds,
       subAdmins: [],
       requests: [],
@@ -38,10 +44,20 @@ export const createHospital = async (req, res) => {
     });
 
     await hospital.save();
-    res
-      .status(201)
-      .json({ message: "Hospital created successfully", hospital });
+
+    res.status(201).json({
+      message: "Hospital created successfully",
+      hospital: {
+        id: hospital._id,
+        name: hospital.name,
+        email: hospital.email,
+        city: hospital.city,
+        totalBeds: hospital.totalBeds,
+        availableBeds: hospital.availableBeds,
+      }, // don't return password in response
+    });
   } catch (error) {
+    console.error("Error creating hospital:", error);
     res.status(500).json({ message: "Server error", error });
   }
 };
@@ -139,15 +155,20 @@ export const deleteHospital = async (req, res) => {
 export const hospitalLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    // Check hospital existence
     const hospital = await Hospital.findOne({ email });
-    if (!hospital)
+    if (!hospital) {
       return res.status(404).json({ message: "Hospital not found" });
+    }
 
-    // const isMatch = await bcrypt.compare(password, hospital.password);
-    const isMatch = password == hospital.password;
-    if (!isMatch)
+    // Compare hashed password
+    const isMatch = await bcrypt.compare(password, hospital.password);
+    if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
+    }
 
+    // Generate JWT
     const token = jwt.sign({ id: hospital._id, role: "hospital" }, SECRET_KEY, {
       expiresIn: "1d",
     });
@@ -159,6 +180,7 @@ export const hospitalLogin = async (req, res) => {
       role: "hospital",
     });
   } catch (error) {
+    console.error("Error during hospital login:", error);
     res.status(500).json({ message: "Server error", error });
   }
 };
