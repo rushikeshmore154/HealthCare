@@ -1,10 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import HospitalLoginPage from "./pages/auth/HospitalLoginPage";
-import UserLoginPage from "./pages/auth/UserLoginPage";
-import SignupSelectionPage from "./pages/SignUpSelectionPage";
-import UserSignup from "./components/auth/user-signup";
-import HospitalSignup from "./components/auth/HospitalSignUp";
+import UnifiedLoginPage from "./pages/auth/UnifiedLoginPage";
+import UnifiedSignupPage from "./pages/auth/UnifiedSignupPage";
 import Protected from "./HOC/authprovider";
 import HomePage from "./pages/HomePage";
 import HospitalDashboardPage from "./pages/HospitalDashboardPage";
@@ -24,11 +21,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/auth/hospital/login" element={<HospitalLoginPage />} />
-          <Route path="/auth/login" element={<UserLoginPage />} />
-          <Route path="/auth/signup" element={<SignupSelectionPage />} />
-          <Route path="/signup/user" element={<UserSignup />} />
-          <Route path="/signup/hospital" element={<HospitalSignup />} />
+          <Route path="/auth/login" element={<UnifiedLoginPage />} />
+          <Route path="/auth/signup" element={<UnifiedSignupPage />} />
 
           <Route
             path="/home"
